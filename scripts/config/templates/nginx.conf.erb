@@ -37,6 +37,14 @@ http {
   #Must read the body in 5 seconds.
   client_body_timeout 5;
 
+  server {
+    listen <%= port %>;
+    server_name airbase-frontend-stagi-pr-2192.herokuapp.com
+    location ~ ^storybook {
+        root   /app/build/storybook;
+    }
+  }
+
 
   server {
     listen <%= port %> reuseport;
@@ -51,9 +59,6 @@ http {
   <% if proxies.any? %>
     resolver <%= resolver %>;
   <% end %>
-    location ~ ^storybook {
-        root   /app/build/storybook;
-    }
 
     location / {
       mruby_post_read_handler /app/bin/config/lib/ngx_mruby/headers.rb cache;
