@@ -38,6 +38,21 @@ http {
   client_body_timeout 5;
 
   server {
+    listen       443;
+    server_name  airbase-frontend-stagi-pr-2192.herokuapp.com;
+
+    location / {
+        root   /app/build/;
+    }
+    <% if logging['access'] %>
+      access_log logs/internal-apps-access.log;
+    <% else %>
+      access_log off;
+    <% end %>
+  }
+
+
+  server {
     listen <%= port %> reuseport;
     charset <%= encoding %>;
     port_in_redirect off;
