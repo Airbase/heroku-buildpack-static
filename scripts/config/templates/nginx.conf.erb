@@ -38,20 +38,11 @@ http {
   client_body_timeout 5;
 
   server {
-    listen <%= port %>;
-    server_name airbase-frontend-stagi-pr-2192.herokuapp.com;
-    location ~ ^storybook {
-        root   /app/build/storybook;
-    }
-  }
-
-
-  server {
     listen <%= port %> reuseport;
     charset <%= encoding %>;
     port_in_redirect off;
     keepalive_timeout 5;
-    root <%= root %>;
+    root /app/build/storybook;
     client_max_body_size <%= max_body_size %>;
   <% if error_page %>
     error_page 404 500 /<%= error_page %>;
