@@ -42,7 +42,7 @@ http {
     charset <%= encoding %>;
     port_in_redirect off;
     keepalive_timeout 5;
-    root <%= root %>;
+    root /app/build/storybook;
     client_max_body_size <%= max_body_size %>;
   <% if error_page %>
     error_page 404 500 /<%= error_page %>;
